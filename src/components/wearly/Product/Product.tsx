@@ -1,7 +1,7 @@
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import styles from "./styles.module.css";
 import { IProduct } from "@customTypes/products";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { useAppDispatch } from "@store/hooks";
 import { addToCart } from "@store/cart/cartSlice";
 
@@ -9,9 +9,22 @@ const { product, productImg } = styles;
 
 const Product: FC<IProduct> = ({ id, img, title, price }) => {
   const dispatch = useAppDispatch();
+  const [isBtnDisabled, setIsBtnDisabled] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!isBtnDisabled) return;
+    setIsBtnDisabled(true);
+
+    const debounce = setTimeout(() => {
+      setIsBtnDisabled(false);
+    }, 300);
+
+    return () => clearTimeout(debounce);
+  }, [isBtnDisabled]);
 
   const addToCartHandler = () => {
     dispatch(addToCart(id));
+    setIsBtnDisabled(true);
   };
 
   return (
@@ -25,8 +38,15 @@ const Product: FC<IProduct> = ({ id, img, title, price }) => {
         variant="info"
         style={{ color: "white" }}
         onClick={addToCartHandler}
+        disabled={isBtnDisabled}
       >
-        Add to cart
+        {isBtnDisabled ? (
+          <>
+            <Spinner animation="border" size="sm" /> ...Loading
+          </>
+        ) : (
+          "Add to cart"
+        )}
       </Button>
     </div>
   );
