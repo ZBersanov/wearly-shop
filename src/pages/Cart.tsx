@@ -4,6 +4,7 @@ import { CartItemlist, CartSubTotalPrice } from "@components/wearly";
 import {
   actGetProductsByItems,
   cartItemChangeQuantity,
+  removeCartItem,
 } from "@store/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { useCallback, useEffect } from "react";
@@ -29,6 +30,13 @@ const Cart = () => {
     [dispatch]
   );
 
+  const removeCartItemHandler = useCallback(
+    (id: number) => {
+      dispatch(removeCartItem(id));
+    },
+    [dispatch]
+  );
+
   return (
     <>
       <Heading>Корзина</Heading>
@@ -36,6 +44,7 @@ const Cart = () => {
         <CartItemlist
           products={products}
           changeQuantityHandler={changeQuantityHandler}
+          removeCartItemHandler={removeCartItemHandler}
         />
         <CartSubTotalPrice />
       </Loading>

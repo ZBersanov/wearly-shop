@@ -8,10 +8,20 @@ const { cartItem, product, productImg, productInfo, cartItemSelection } =
 
 type TCartItemProps = IProduct & {
   changeQuantityHandler: (id: number, quantity: number) => void;
+  removeCartItemHandler: (id: number) => void;
 };
 
 const CartItem: FC<TCartItemProps> = memo(
-  ({ id, img, title, price, max, quantity, changeQuantityHandler }) => {
+  ({
+    id,
+    img,
+    title,
+    price,
+    max,
+    quantity,
+    changeQuantityHandler,
+    removeCartItemHandler,
+  }) => {
     const renderOptions = Array(max)
       .fill(0)
       .map((_, index) => {
@@ -28,8 +38,6 @@ const CartItem: FC<TCartItemProps> = memo(
       changeQuantityHandler(id, quantity);
     };
 
-    console.log("render");
-
     return (
       <div className={cartItem}>
         <div className={product}>
@@ -44,6 +52,7 @@ const CartItem: FC<TCartItemProps> = memo(
               variant="secondary"
               style={{ color: "white", width: "100px" }}
               className="mt-auto"
+              onClick={() => removeCartItemHandler(id)}
             >
               Remove
             </Button>
