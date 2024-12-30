@@ -1,5 +1,7 @@
+import { Heading } from "@components/common";
+
 const Home = () => {
-  return <div>Home</div>;
+  return <Heading>Главная</Heading>;
 };
 
 export default Home;

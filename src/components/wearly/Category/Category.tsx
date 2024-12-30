@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
-import { ICategory } from "@types";
+import { ICategory } from "@customTypes/categories";
 const { category, categoryImg, categoryTitle } = styles;
 
 const Category: FC<ICategory> = ({ img, title, prefix }) => {
