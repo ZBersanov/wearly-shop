@@ -4,6 +4,8 @@ import { registerSW } from "virtual:pwa-register";
 //redux
 import { store, persistor } from "@store/index";
 import { Provider } from "react-redux";
+//axios
+import "@services/axios-global";
 //styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@styles/global.css";

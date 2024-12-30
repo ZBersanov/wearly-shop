@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { FC, useEffect } from "react";
 import { actGetCategories } from "@store/categories/categoriesSlice";
 import { Loading } from "@components/feedback";
-import { GridList } from "@components/common";
+import { GridList, Heading } from "@components/common";
 
 const Categories: FC = () => {
   const dispatch = useAppDispatch();
@@ -20,6 +20,7 @@ const Categories: FC = () => {
 
   return (
     <Container>
+      <Heading>Категории</Heading>
       <Loading loading={loading} error={error}>
         <GridList
           records={records}
