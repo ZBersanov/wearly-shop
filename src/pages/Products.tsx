@@ -12,6 +12,12 @@ const Products = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
   const { records, loading, error } = useAppSelector((state) => state.products);
+  const { items } = useAppSelector((state) => state.cart);
+
+  const productsFullInfo = records.map((el) => ({
+    ...el,
+    quantity: items[el.id] || 0,
+  }));
 
   useEffect(() => {
     dispatch(actGetProducts(params.prefix as string));
@@ -25,7 +31,7 @@ const Products = () => {
     <Container>
       <Loading loading={loading} error={error}>
         <GridList
-          records={records}
+          records={productsFullInfo}
           renderItem={(record) => <Product {...record} />}
         />
       </Loading>

@@ -5,4 +5,5 @@ export interface IProduct {
   img: string;
   price: string;
   quantity?: number;
+  max: number;
 }
