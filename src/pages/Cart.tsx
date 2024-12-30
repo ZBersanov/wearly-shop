@@ -46,7 +46,7 @@ const Cart = () => {
           changeQuantityHandler={changeQuantityHandler}
           removeCartItemHandler={removeCartItemHandler}
         />
-        <CartSubTotalPrice />
+        <CartSubTotalPrice products={products} />
       </Loading>
     </>
   );
