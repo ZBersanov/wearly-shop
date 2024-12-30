@@ -18,7 +18,7 @@ const CartSubTotalPrice: FC<TCartSubTotalPriceProps> = ({ products }) => {
   }, 0);
   return (
     <div className={container}>
-      <span>Subtotal:</span>
+      <span>Итого к оплате:</span>
       <span>{totalPrice.toFixed(2)} RUB</span>
     </div>
   );

@@ -41,12 +41,18 @@ const Cart = () => {
     <>
       <Heading>Корзина</Heading>
       <Loading loading={loading} error={error}>
-        <CartItemlist
-          products={products}
-          changeQuantityHandler={changeQuantityHandler}
-          removeCartItemHandler={removeCartItemHandler}
-        />
-        <CartSubTotalPrice products={products} />
+        {products.length ? (
+          <>
+            <CartItemlist
+              products={products}
+              changeQuantityHandler={changeQuantityHandler}
+              removeCartItemHandler={removeCartItemHandler}
+            />
+            <CartSubTotalPrice products={products} />
+          </>
+        ) : (
+          <h2>Ваша корзина пуста</h2>
+        )}
       </Loading>
     </>
   );
