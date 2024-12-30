@@ -14,18 +14,19 @@ const Products = () => {
   const { records, loading, error } = useAppSelector((state) => state.products);
   const { items } = useAppSelector((state) => state.cart);
 
-  const productsFullInfo = records.map((el) => ({
-    ...el,
-    quantity: items[el.id] || 0,
-  }));
-
   useEffect(() => {
     dispatch(actGetProducts(params.prefix as string));
+    console.log(params.prefix);
 
     return () => {
       dispatch(cleanProducts());
     };
   }, [dispatch, params.prefix]);
+
+  const productsFullInfo = records.map((el) => ({
+    ...el,
+    quantity: items[el.id] || 0,
+  }));
 
   return (
     <Container>
