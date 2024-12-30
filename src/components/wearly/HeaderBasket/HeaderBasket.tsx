@@ -15,8 +15,6 @@ const HeaderBasket = () => {
     isAnimate ? pumpCartQuantity : ""
   }`;
 
-  console.log(totalQuantity);
-
   const navigate = useNavigate();
 
   useEffect(() => {
