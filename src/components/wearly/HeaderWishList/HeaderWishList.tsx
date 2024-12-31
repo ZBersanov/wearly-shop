@@ -31,7 +31,7 @@ const HeaderWishList = () => {
   }, [totalQuantity]);
 
   return (
-    <div className={container} onClick={() => navigate("/cart")}>
+    <div className={container} onClick={() => navigate("/wishlist")}>
       <div className={iconWrapper}>
         <WishIcon title="wishlist icon" />
         {totalQuantity > 0 && (
