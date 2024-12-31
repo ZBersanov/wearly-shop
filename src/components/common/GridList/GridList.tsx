@@ -6,7 +6,7 @@ type GridListProps<T> = {
   renderItem: (record: T) => React.ReactNode;
 };
 
-type HasId = { id?: number };
+type HasId = { id: number };
 
 const GridList = <T extends HasId>({
   records,
