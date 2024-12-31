@@ -1,6 +1,7 @@
 // import { useAppSelector } from "@store/hooks";
 import styles from "./styles.module.css";
 import WishIcon from "@assets/svg/wishlist.svg?react";
+import { useAppSelector } from "@store/hooks";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -8,7 +9,9 @@ const { container, total, iconWrapper, pumpCartQuantity } = styles;
 
 const HeaderWishList = () => {
   const [isAnimate, setIsAnimate] = useState<boolean>(false);
-  const totalQuantity = 0;
+  const totalQuantity = useAppSelector(
+    (state) => state.wishlist.itemsId.length
+  );
   const quantityStyle = `${total} ${isAnimate ? pumpCartQuantity : ""}`;
 
   const navigate = useNavigate();
