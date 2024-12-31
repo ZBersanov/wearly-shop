@@ -1,9 +1,9 @@
 import styles from "./styles.module.css";
 import { Badge, Container, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { HeaderBasket } from "@components/wearly";
+import { HeaderBasket, HeaderWishList } from "@components/wearly";
 
-const { headerContainer, headerLogo } = styles;
+const { headerContainer, headerLogo, headerLeftBar } = styles;
 
 const Header = () => {
   return (
@@ -12,8 +12,10 @@ const Header = () => {
         <h1 className={headerLogo}>
           <span>Наш</span> <Badge bg="info">Wearly</Badge>
         </h1>
-
-        <HeaderBasket />
+        <div className={headerLeftBar}>
+          <HeaderWishList />
+          <HeaderBasket />
+        </div>
       </div>
       <Navbar
         expand="lg"

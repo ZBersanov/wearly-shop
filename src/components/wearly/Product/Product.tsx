@@ -5,7 +5,7 @@ import { FC, memo, useEffect, useState } from "react";
 import { useAppDispatch } from "@store/hooks";
 import { addToCart } from "@store/cart/cartSlice";
 import Like from "@assets/svg/like.svg?react";
-import LikeFill from "@assets/svg/like-fill.svg";
+// import LikeFill from "@assets/svg/like-fill.svg";
 
 const { product, productImg, maximumNotice, wishlistBtn } = styles;
 
@@ -43,7 +43,7 @@ const Product: FC<IProduct> = memo(
         </div>
         <h2>{title}</h2>
         <h3>{price.toFixed(2)}</h3>
-        <p>
+        <p className={maximumNotice}>
           {quantityReachedToMax
             ? `Вы достигли лимита`
             : `Вы можете добавить штук: ${currentRemainingQuantity} `}
