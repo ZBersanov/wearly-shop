@@ -4,8 +4,10 @@ import { IProduct } from "@customTypes/products";
 import { FC, memo, useEffect, useState } from "react";
 import { useAppDispatch } from "@store/hooks";
 import { addToCart } from "@store/cart/cartSlice";
+import Like from "@assets/svg/like.svg?react";
+import LikeFill from "@assets/svg/like-fill.svg";
 
-const { product, productImg } = styles;
+const { product, productImg, maximumNotice, wishlistBtn } = styles;
 
 const Product: FC<IProduct> = memo(
   ({ id, img, title, price, max, quantity }) => {
@@ -33,6 +35,9 @@ const Product: FC<IProduct> = memo(
 
     return (
       <div className={product}>
+        <div className={wishlistBtn}>
+          <Like />
+        </div>
         <div className={productImg}>
           <img src={img} alt={title} />
         </div>
