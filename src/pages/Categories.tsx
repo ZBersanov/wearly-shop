@@ -1,27 +1,14 @@
 import { Container } from "react-bootstrap";
 import { Category } from "@components/wearly";
-import { useAppDispatch, useAppSelector } from "@store/hooks";
-import { FC, useEffect } from "react";
-import {
-  actGetCategories,
-  cleanCategories,
-} from "@store/categories/categoriesSlice";
+
+import { FC } from "react";
+
 import { Loading } from "@components/feedback";
 import { GridList, Heading } from "@components/common";
+import { useCategories } from "@hooks/useCategories";
 
 const Categories: FC = () => {
-  const dispatch = useAppDispatch();
-  const { records, loading, error } = useAppSelector(
-    (state) => state.categories
-  );
-
-  useEffect(() => {
-    dispatch(actGetCategories());
-
-    return () => {
-      dispatch(cleanCategories());
-    };
-  }, [dispatch]);
+  const { loading, error, records } = useCategories();
 
   return (
     <Container>
