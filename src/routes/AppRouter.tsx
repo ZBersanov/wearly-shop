@@ -9,15 +9,23 @@ const Products = lazy(() => import("@pages/Products"));
 const AboutUs = lazy(() => import("@pages/AboutUs"));
 const Login = lazy(() => import("@pages/Login"));
 const Register = lazy(() => import("@pages/Register"));
-const Error = lazy(() => import("@pages/Error"));
 const Cart = lazy(() => import("@pages/Cart"));
 const WishList = lazy(() => import("@pages/WishList"));
+import Error from "@pages/Error";
+import PageSuspense from "@components/feedback/PageSuspense/PageSuspense";
+import { LottieHandler } from "@components/feedback";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <Suspense fallback="Идет загрузка">
+      <Suspense
+        fallback={
+          <div style={{ marginTop: "13%" }}>
+            <LottieHandler type="loading" message="Идет загрузка..." />
+          </div>
+        }
+      >
         <MainLayout />
       </Suspense>
     ),
@@ -26,41 +34,41 @@ const router = createBrowserRouter([
       {
         index: true,
         element: (
-          <Suspense fallback="Идет загрзука">
+          <PageSuspense>
             <Home />
-          </Suspense>
+          </PageSuspense>
         ),
       },
       {
         path: "/cart",
         element: (
-          <Suspense fallback="Идет загрзука">
+          <PageSuspense>
             <Cart />
-          </Suspense>
+          </PageSuspense>
         ),
       },
       {
         path: "/wishlist",
         element: (
-          <Suspense fallback="Идет загрзука">
+          <PageSuspense>
             <WishList />
-          </Suspense>
+          </PageSuspense>
         ),
       },
       {
         path: "categories",
         element: (
-          <Suspense fallback="Идет загрзука">
+          <PageSuspense>
             <Categories />
-          </Suspense>
+          </PageSuspense>
         ),
       },
       {
         path: "categories/products/:prefix",
         element: (
-          <Suspense fallback="Идет загрзука">
+          <PageSuspense>
             <Products />
-          </Suspense>
+          </PageSuspense>
         ),
         loader: ({ params }) => {
           if (
@@ -78,25 +86,25 @@ const router = createBrowserRouter([
       {
         path: "aboutUs",
         element: (
-          <Suspense fallback="Идет загрзука">
+          <PageSuspense>
             <AboutUs />
-          </Suspense>
+          </PageSuspense>
         ),
       },
       {
         path: "login",
         element: (
-          <Suspense fallback="Идет загрзука">
+          <PageSuspense>
             <Login />
-          </Suspense>
+          </PageSuspense>
         ),
       },
       {
         path: "register",
         element: (
-          <Suspense fallback="Идет загрзука">
+          <PageSuspense>
             <Register />
-          </Suspense>
+          </PageSuspense>
         ),
       },
     ],

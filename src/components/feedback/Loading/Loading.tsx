@@ -4,6 +4,7 @@ import { FC } from "react";
 import CategorySkeleton from "../Skeletons/CategorySkeleton";
 import CartSkeleton from "../Skeletons/CartSkeleton";
 import ProductSkeleton from "../Skeletons/ProductSkeleton";
+import LottieHandler from "../LottieHandler/LottieHandler";
 
 interface LoadingProps {
   loading: TLoading;
@@ -30,7 +31,7 @@ const Loading: FC<LoadingProps> = ({
   }
 
   if (loading === "rejected") {
-    return <p>{error}</p>;
+    return <LottieHandler type="error" message={error as string} />;
   }
 
   return <div>{children}</div>;

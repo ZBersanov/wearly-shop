@@ -1,5 +1,5 @@
 import { Heading } from "@components/common";
-import { Loading } from "@components/feedback";
+import { Loading, LottieHandler } from "@components/feedback";
 import { CartItemlist, CartSubTotalPrice } from "@components/wearly";
 import { useCart } from "@hooks/useCart";
 
@@ -26,7 +26,7 @@ const Cart = () => {
             <CartSubTotalPrice products={products} />
           </>
         ) : (
-          <h2>Ваша корзина пуста</h2>
+          <LottieHandler type="empty" message="Корзина пуста" />
         )}
       </Loading>
     </>

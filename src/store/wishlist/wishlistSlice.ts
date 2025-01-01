@@ -53,13 +53,16 @@ const wishlistSlice = createSlice({
     builder.addCase(actGetWishlist.fulfilled, (state, action) => {
       state.loading = "successfull";
       state.productsFullInfo = action.payload;
-      state.error = null;
+      state.itemsId = action.payload.map((item) => item.id); // Синхронизация IDs
     });
+
     builder.addCase(actGetWishlist.rejected, (state, action) => {
       state.loading = "rejected";
       if (isString(action.payload)) {
         state.error = action.payload;
       }
+      state.itemsId = [];
+      state.productsFullInfo = [];
     });
   },
 });

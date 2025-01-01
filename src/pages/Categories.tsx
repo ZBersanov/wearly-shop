@@ -17,6 +17,7 @@ const Categories: FC = () => {
         <GridList
           records={records}
           renderItem={(record) => <Category {...record} />}
+          emptyMessage="Нет категорий"
         />
       </Loading>
     </Container>

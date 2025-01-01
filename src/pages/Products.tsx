@@ -13,6 +13,7 @@ const Products = () => {
         <GridList
           records={productsFullInfo}
           renderItem={(record) => <Product {...record} />}
+          emptyMessage="Нет товаров"
         />
       </Loading>
     </Container>

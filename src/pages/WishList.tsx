@@ -13,6 +13,7 @@ const WishList = () => {
         <GridList
           records={records}
           renderItem={(record) => <Product {...record} />}
+          emptyMessage="Нет избранных"
         />
       </Loading>
     </>
