@@ -1,4 +1,4 @@
-import { TProduct } from "@types";
+import { isString, TProduct } from "@types";
 import { createSlice } from "@reduxjs/toolkit";
 import { getCartTotalQuantitySelector } from "./selectors";
 import actGetProductsByItems from "./act/actGetProductsByItems";
@@ -54,7 +54,9 @@ const cartSlice = createSlice({
     });
     builder.addCase(actGetProductsByItems.rejected, (state, action) => {
       state.loading = "rejected";
-      state.error = action.payload as string;
+      if (isString(action.payload)) {
+        state.error = action.payload;
+      }
     });
   },
 });

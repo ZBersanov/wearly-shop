@@ -14,7 +14,6 @@ type TProductProps = TProduct & { isLiked: boolean };
 
 const Product: FC<TProductProps> = memo(
   ({ id, img, title, price, max, quantity, isLiked }) => {
-    console.log("product");
     const dispatch = useAppDispatch();
     const [isBtnDisabled, setIsBtnDisabled] = useState<boolean>(false);
     const currentRemainingQuantity = max - (quantity ?? 0);

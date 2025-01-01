@@ -9,7 +9,7 @@ const Products = () => {
   return (
     <Container>
       <Heading>{productPrefix?.toUpperCase()} Товары</Heading>
-      <Loading loading={loading} error={error}>
+      <Loading loading={loading} error={error} type="product">
         <GridList
           records={productsFullInfo}
           renderItem={(record) => <Product {...record} />}

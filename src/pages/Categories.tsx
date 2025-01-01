@@ -13,7 +13,7 @@ const Categories: FC = () => {
   return (
     <Container>
       <Heading>Категории</Heading>
-      <Loading loading={loading} error={error}>
+      <Loading loading={loading} error={error} type="category">
         <GridList
           records={records}
           renderItem={(record) => <Category {...record} />}

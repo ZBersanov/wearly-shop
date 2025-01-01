@@ -15,7 +15,7 @@ const Cart = () => {
   return (
     <>
       <Heading>Корзина</Heading>
-      <Loading loading={loading} error={error}>
+      <Loading loading={loading} error={error} type="cart">
         {products.length ? (
           <>
             <CartItemlist
