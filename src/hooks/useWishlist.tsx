@@ -11,9 +11,10 @@ export const useWishlist = () => {
   const wishListItemsId = useAppSelector((state) => state.wishlist.itemsId);
 
   useEffect(() => {
-    dispatch(actGetWishlist());
+    const promise = dispatch(actGetWishlist());
 
     return () => {
+      promise.abort();
       dispatch(cleanWishlist());
     };
   }, [dispatch]);

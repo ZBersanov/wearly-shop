@@ -9,7 +9,7 @@ type TResponse = IProduct[];
 const actGetProductsByItems = createAsyncThunk(
   "cart/actGetProductsByItems",
   async (_, thunkAPI) => {
-    const { getState, rejectWithValue, fulfillWithValue } = thunkAPI;
+    const { getState, rejectWithValue, fulfillWithValue, signal } = thunkAPI;
     const { cart } = getState() as RootState;
     const itemsId = Object.keys(cart.items);
 
@@ -19,7 +19,7 @@ const actGetProductsByItems = createAsyncThunk(
 
     try {
       // Получаем все продукты
-      const response = await axios.get<TResponse>("/products");
+      const response = await axios.get<TResponse>("/products", { signal });
 
       // Фильтруем полученные продукты по ID, которые есть в корзине
       const filteredProducts = response.data.filter(

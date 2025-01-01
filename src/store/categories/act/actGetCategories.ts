@@ -6,9 +6,9 @@ import isAxiosErrorHandler from "@util/isAxiosErrorHandler";
 const actGetCategories = createAsyncThunk(
   "categories/actGetCategories",
   async (_, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
+    const { rejectWithValue, signal } = thunkAPI;
     try {
-      const responce = await axios.get<ICategory[]>("/category");
+      const responce = await axios.get<ICategory[]>("/category", { signal });
       return responce.data;
     } catch (error) {
       return rejectWithValue(isAxiosErrorHandler(error));

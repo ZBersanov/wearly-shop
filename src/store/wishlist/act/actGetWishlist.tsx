@@ -8,11 +8,13 @@ type TResponse = IProduct & { productId: number }[];
 const actGetWishlist = createAsyncThunk(
   "wishlist/actGetWishlist",
   async (_, thunkAPI) => {
-    const { rejectWithValue, fulfillWithValue } = thunkAPI;
+    const { rejectWithValue, fulfillWithValue, signal } = thunkAPI;
 
     try {
       // Получение списка товаров в вишлисте
-      const userWishlist = await axios.get<TResponse>("/wishlist?userId=1");
+      const userWishlist = await axios.get<TResponse>("/wishlist?userId=1", {
+        signal,
+      });
 
       if (!userWishlist.data.length) {
         return fulfillWithValue([]);
@@ -22,7 +24,7 @@ const actGetWishlist = createAsyncThunk(
       const wishlistIds = userWishlist.data.map((item) => item.productId);
 
       // Получаем все товары
-      const response = await axios.get<IProduct[]>("/products");
+      const response = await axios.get<IProduct[]>("/products", { signal });
 
       // Фильтруем товары, оставляя только те, что есть в вишлисте
       const filteredItems = response.data.filter((el) =>
