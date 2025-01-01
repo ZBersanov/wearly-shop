@@ -17,7 +17,6 @@ const Products = () => {
 
   useEffect(() => {
     dispatch(actGetProducts(params.prefix as string));
-    console.log(params.prefix);
 
     return () => {
       dispatch(cleanProducts());
@@ -32,7 +31,7 @@ const Products = () => {
 
   return (
     <Container>
-      <Heading>Товары</Heading>
+      <Heading>{params.prefix?.toUpperCase()} Товары</Heading>
       <Loading loading={loading} error={error}>
         <GridList
           records={productsFullInfo}

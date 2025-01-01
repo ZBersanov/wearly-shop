@@ -39,6 +39,9 @@ const cartSlice = createSlice({
         return el.id !== action.payload;
       });
     },
+    cleanFullProductInfo: (state) => {
+      state.productFullInfo = [];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(actGetProductsByItems.pending, (state) => {
@@ -48,7 +51,6 @@ const cartSlice = createSlice({
     builder.addCase(actGetProductsByItems.fulfilled, (state, action) => {
       state.loading = "successfull";
       state.productFullInfo = action.payload;
-      state.error = null;
     });
     builder.addCase(actGetProductsByItems.rejected, (state, action) => {
       state.loading = "rejected";
@@ -58,6 +60,10 @@ const cartSlice = createSlice({
 });
 
 export { getCartTotalQuantitySelector, actGetProductsByItems };
-export const { addToCart, cartItemChangeQuantity, removeCartItem } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  cartItemChangeQuantity,
+  removeCartItem,
+  cleanFullProductInfo,
+} = cartSlice.actions;
 export default cartSlice.reducer;

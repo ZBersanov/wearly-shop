@@ -2,7 +2,10 @@ import { Container } from "react-bootstrap";
 import { Category } from "@components/wearly";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
 import { FC, useEffect } from "react";
-import { actGetCategories } from "@store/categories/categoriesSlice";
+import {
+  actGetCategories,
+  cleanCategories,
+} from "@store/categories/categoriesSlice";
 import { Loading } from "@components/feedback";
 import { GridList, Heading } from "@components/common";
 
@@ -13,10 +16,12 @@ const Categories: FC = () => {
   );
 
   useEffect(() => {
-    if (!records.length) {
-      dispatch(actGetCategories());
-    }
-  }, [dispatch, records]);
+    dispatch(actGetCategories());
+
+    return () => {
+      dispatch(cleanCategories());
+    };
+  }, [dispatch]);
 
   return (
     <Container>

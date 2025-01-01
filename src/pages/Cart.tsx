@@ -4,6 +4,7 @@ import { CartItemlist, CartSubTotalPrice } from "@components/wearly";
 import {
   actGetProductsByItems,
   cartItemChangeQuantity,
+  cleanFullProductInfo,
   removeCartItem,
 } from "@store/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "@store/hooks";
@@ -16,6 +17,10 @@ const Cart = () => {
   );
   useEffect(() => {
     dispatch(actGetProductsByItems());
+
+    return () => {
+      dispatch(cleanFullProductInfo());
+    };
   }, [dispatch]);
 
   const products = productFullInfo.map((el) => ({

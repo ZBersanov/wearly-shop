@@ -2,13 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import actGetCategories from "./act/actGetCategories";
 import { TLoading } from "@customTypes/shared";
-
-interface ICategory {
-  id: number;
-  title: string;
-  prefix: string;
-  img: string;
-}
+import { ICategory } from "@customTypes/categories";
 
 interface ICategoriesState {
   records: ICategory[];
@@ -25,7 +19,11 @@ const initialState: ICategoriesState = {
 const categoriesSlice = createSlice({
   name: "categories",
   initialState,
-  reducers: {},
+  reducers: {
+    cleanCategories: (state) => {
+      state.records = [];
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(actGetCategories.pending, (state) => {
       state.loading = "pending";
@@ -44,4 +42,5 @@ const categoriesSlice = createSlice({
 });
 
 export { actGetCategories };
+export const { cleanCategories } = categoriesSlice.actions;
 export default categoriesSlice.reducer;
