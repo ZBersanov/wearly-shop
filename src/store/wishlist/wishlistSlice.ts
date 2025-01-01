@@ -53,7 +53,7 @@ const wishlistSlice = createSlice({
     builder.addCase(actGetWishlist.fulfilled, (state, action) => {
       state.loading = "successfull";
       state.productsFullInfo = action.payload;
-      state.itemsId = action.payload.map((item) => item.id); // Синхронизация IDs
+      state.itemsId = action.payload.map((item) => item.id);
     });
 
     builder.addCase(actGetWishlist.rejected, (state, action) => {
