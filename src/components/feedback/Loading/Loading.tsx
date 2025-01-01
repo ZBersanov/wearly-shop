@@ -1,5 +1,5 @@
 import React from "react";
-import { TLoading } from "@customTypes/shared";
+import { TLoading } from "@types";
 import { FC } from "react";
 
 interface LoadingProps {

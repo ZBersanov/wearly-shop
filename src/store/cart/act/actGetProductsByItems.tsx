@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "@store/index";
-import { IProduct } from "@customTypes/products";
+import { TProduct } from "@types";
 import axios from "axios";
 import isAxiosErrorHandler from "@util/isAxiosErrorHandler";
 
-type TResponse = IProduct[];
+type TResponse = TProduct[];
 
 const actGetProductsByItems = createAsyncThunk(
   "cart/actGetProductsByItems",

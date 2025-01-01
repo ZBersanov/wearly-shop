@@ -1,11 +1,11 @@
-import { IProduct } from "@customTypes/products";
+import { TProduct } from "@types";
 import styles from "./styles.module.css";
 import { FC } from "react";
 
 const { container } = styles;
 
 type TCartSubTotalPriceProps = {
-  products: IProduct[];
+  products: TProduct[];
 };
 
 const CartSubTotalPrice: FC<TCartSubTotalPriceProps> = ({ products }) => {

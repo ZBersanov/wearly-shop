@@ -1,10 +1,10 @@
 import { FC } from "react";
 import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
-import { ICategory } from "@customTypes/categories";
+import { TCategory } from "@types";
 const { category, categoryImg, categoryTitle } = styles;
 
-const Category: FC<ICategory> = ({ img, title, prefix }) => {
+const Category: FC<TCategory> = ({ img, title, prefix }) => {
   return (
     <div className={category}>
       <Link to={`/categories/products/${prefix}`}>

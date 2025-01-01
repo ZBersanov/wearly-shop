@@ -28,7 +28,8 @@
       "@store/*": ["src/store/*"],
       "@styles/*": ["src/styles/*"],
       "@util/*": ["src/util/*"],
-      "@customTypes/*" : ["src/types/*"]
+      "@types/*" : ["src/types/*"],
+      "@types" : ["src/types/index"],
     },
     /* Linting */
     "strict": true,

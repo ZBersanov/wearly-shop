@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import actGetProducts from "./act/actGetProducts";
-import { IProduct } from "@customTypes/products";
-import { TLoading } from "@customTypes/shared";
+import { TProduct } from "@types";
+import { TLoading } from "@types";
 
 interface IProductsState {
-  records: IProduct[];
+  records: TProduct[];
   loading: TLoading;
   error: string | null;
 }

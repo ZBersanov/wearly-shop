@@ -1,6 +1,6 @@
 import { Button, Spinner } from "react-bootstrap";
 import styles from "./styles.module.css";
-import { IProduct } from "@customTypes/products";
+import { TProduct } from "@types";
 import { FC, memo, useEffect, useState } from "react";
 import { useAppDispatch } from "@store/hooks";
 import { addToCart } from "@store/cart/cartSlice";
@@ -10,7 +10,7 @@ import LikeFill from "@assets/svg/like-fill.svg?react";
 
 const { product, productImg, maximumNotice, wishlistBtn } = styles;
 
-type TProductProps = IProduct & { isLiked: boolean };
+type TProductProps = TProduct & { isLiked: boolean };
 
 const Product: FC<TProductProps> = memo(
   ({ id, img, title, price, max, quantity, isLiked }) => {

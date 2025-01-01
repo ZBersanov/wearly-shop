@@ -1,9 +1,9 @@
-import { IProduct } from "@customTypes/products";
+import { TProduct } from "@types";
 import CartItem from "../CartItem/CartItem";
 import { FC } from "react";
 
 type TCartItemListProps = {
-  products: IProduct[];
+  products: TProduct[];
   changeQuantityHandler: (id: number, quantity: number) => void;
   removeCartItemHandler: (id: number) => void;
 };

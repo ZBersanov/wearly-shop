@@ -1,4 +1,4 @@
-export interface IProduct {
+export type TProduct = {
   id: number;
   title: string;
   cat_prefix: string;
@@ -6,4 +6,4 @@ export interface IProduct {
   price: number;
   quantity?: number;
   max: number;
-}
+};

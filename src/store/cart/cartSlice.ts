@@ -1,12 +1,12 @@
-import { IProduct } from "@customTypes/products";
+import { TProduct } from "@types";
 import { createSlice } from "@reduxjs/toolkit";
 import { getCartTotalQuantitySelector } from "./selectors";
 import actGetProductsByItems from "./act/actGetProductsByItems";
-import { TLoading } from "@customTypes/shared";
+import { TLoading } from "@types";
 
 interface ICartState {
   items: { [key: number]: number };
-  productFullInfo: IProduct[];
+  productFullInfo: TProduct[];
   loading: TLoading;
   error: string | null;
 }

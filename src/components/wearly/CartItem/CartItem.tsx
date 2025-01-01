@@ -1,12 +1,12 @@
 import { Button, Form } from "react-bootstrap";
 import styles from "./styles.module.css";
-import { IProduct } from "@customTypes/products";
+import { TProduct } from "@types";
 import { FC, memo } from "react";
 
 const { cartItem, product, productImg, productInfo, cartItemSelection } =
   styles;
 
-type TCartItemProps = IProduct & {
+type TCartItemProps = TProduct & {
   changeQuantityHandler: (id: number, quantity: number) => void;
   removeCartItemHandler: (id: number) => void;
 };

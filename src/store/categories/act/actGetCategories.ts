@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { ICategory } from "@customTypes/categories";
+import { TCategory } from "@types";
 import axios from "axios";
 import isAxiosErrorHandler from "@util/isAxiosErrorHandler";
 
@@ -8,7 +8,7 @@ const actGetCategories = createAsyncThunk(
   async (_, thunkAPI) => {
     const { rejectWithValue, signal } = thunkAPI;
     try {
-      const responce = await axios.get<ICategory[]>("/category", { signal });
+      const responce = await axios.get<TCategory[]>("/category", { signal });
       return responce.data;
     } catch (error) {
       return rejectWithValue(isAxiosErrorHandler(error));

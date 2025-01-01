@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { IProduct } from "@customTypes/products";
+import { TProduct } from "@types";
 import isAxiosErrorHandler from "@util/isAxiosErrorHandler";
 
-type TResponse = IProduct & { productId: number }[];
+type TResponse = TProduct & { productId: number }[];
 
 const actGetWishlist = createAsyncThunk(
   "wishlist/actGetWishlist",
@@ -24,7 +24,7 @@ const actGetWishlist = createAsyncThunk(
       const wishlistIds = userWishlist.data.map((item) => item.productId);
 
       // Получаем все товары
-      const response = await axios.get<IProduct[]>("/products", { signal });
+      const response = await axios.get<TProduct[]>("/products", { signal });
 
       // Фильтруем товары, оставляя только те, что есть в вишлисте
       const filteredItems = response.data.filter((el) =>
