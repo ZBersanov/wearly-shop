@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "@store/index";
 import { IProduct } from "@customTypes/products";
-import axios, { isAxiosError } from "axios";
+import axios from "axios";
+import isAxiosErrorHandler from "@util/isAxiosErrorHandler";
 
 type TResponse = IProduct[];
 
@@ -27,11 +28,7 @@ const actGetProductsByItems = createAsyncThunk(
 
       return filteredProducts; // Возвращаем отфильтрованные данные
     } catch (error) {
-      if (isAxiosError(error)) {
-        return rejectWithValue(error.response?.data.message || error.message);
-      } else {
-        return rejectWithValue("Произошла непредвиденная ошибка");
-      }
+      return rejectWithValue(isAxiosErrorHandler(error));
     }
   }
 );

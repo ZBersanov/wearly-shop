@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { IProduct } from "@customTypes/products";
-import axios, { isAxiosError } from "axios";
+import axios from "axios";
+import isAxiosErrorHandler from "@util/isAxiosErrorHandler";
 
 const actGetProducts = createAsyncThunk(
   "products/actGetProducts",
@@ -12,11 +13,7 @@ const actGetProducts = createAsyncThunk(
       );
       return responce.data;
     } catch (error) {
-      if (isAxiosError(error)) {
-        rejectWithValue(error.response?.data.message || error.message);
-      } else {
-        rejectWithValue("Произошла непредвиденная ошибка");
-      }
+      return rejectWithValue(isAxiosErrorHandler(error));
     }
   }
 );
