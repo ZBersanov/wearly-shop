@@ -11,11 +11,13 @@ export const useProducts = () => {
   const { records, loading, error } = useAppSelector((state) => state.products);
   const { items } = useAppSelector((state) => state.cart);
   const wishListItemsId = useAppSelector((state) => state.wishlist.itemsId);
+  const userAccessToken = useAppSelector((state) => state.auth.accessToken);
 
   const productsFullInfo = records.map((el) => ({
     ...el,
     quantity: items[el.id] || 0,
     isLiked: wishListItemsId.includes(el.id),
+    isAuthenticated: userAccessToken ? true : false,
   }));
 
   useEffect(() => {

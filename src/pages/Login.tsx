@@ -1,27 +1,39 @@
 import { Heading } from "@components/common";
 import { Input } from "@components/Form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { signInSchema, SignInTypes } from "@validations/signInSchema";
-import { Form, Button, Row, Col } from "react-bootstrap";
-import { SubmitHandler, useForm } from "react-hook-form";
+import useLogin from "@hooks/useLogin";
+
+import { Form, Button, Row, Col, Alert, Spinner } from "react-bootstrap";
+import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const {
-    register,
+    accessToken,
+    searchParams,
     handleSubmit,
-    formState: { errors },
-  } = useForm<SignInTypes>({
-    mode: "onBlur",
-    resolver: zodResolver(signInSchema),
-  });
+    register,
+    errors,
+    submitHandler,
+    loading,
+    error,
+  } = useLogin();
 
-  const submitHandler: SubmitHandler<SignInTypes> = (data) => console.log(data);
+  if (accessToken) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <>
       <Heading>Вход</Heading>
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
+          {searchParams.get("message") === "login_required" && (
+            <Alert variant="danger">Необходимо войти</Alert>
+          )}
+          {searchParams.get("message") === "account_created" && (
+            <Alert variant="success">
+              Аккаунт успешно создан, пожалуйста войдите
+            </Alert>
+          )}
           <Form onSubmit={handleSubmit(submitHandler)}>
             <Input
               label="Электронная почта"
@@ -37,8 +49,17 @@ const Login = () => {
               error={errors.password?.message}
             />
             <Button variant="info" type="submit" style={{ color: "white" }}>
-              Войти
-            </Button>{" "}
+              {loading === "pending" ? (
+                <>
+                  <Spinner animation="border" size="sm" /> Загрузка...
+                </>
+              ) : (
+                "Войти"
+              )}
+            </Button>
+            {error && (
+              <p style={{ color: "red", marginTop: "30px" }}>{error}</p>
+            )}
           </Form>
         </Col>
       </Row>

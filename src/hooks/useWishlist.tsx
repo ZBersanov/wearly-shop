@@ -11,8 +11,7 @@ export const useWishlist = () => {
   const wishListItemsId = useAppSelector((state) => state.wishlist.itemsId);
 
   useEffect(() => {
-    const promise = dispatch(actGetWishlist());
-
+    const promise = dispatch(actGetWishlist("productsFullInfo"));
     return () => {
       promise.abort();
       dispatch(cleanWishlist());
@@ -23,6 +22,7 @@ export const useWishlist = () => {
     ...el,
     quantity: items[el.id] || 0,
     isLiked: wishListItemsId.includes(el.id),
+    isAuthenticated: true,
   }));
 
   return { loading, error, records };

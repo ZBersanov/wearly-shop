@@ -1,44 +1,25 @@
 import { Heading } from "@components/common";
-import { Form, Button, Row, Col } from "react-bootstrap";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { signUpSchema, SignUpTypes } from "@validations/signUpSchema";
+import { Form, Button, Row, Col, Spinner } from "react-bootstrap";
 import { Input } from "@components/Form";
-import useCheckEmailAvailability from "@hooks/useCheckEmailAvailability";
+import useRegister from "@hooks/useRegister";
+import { Navigate } from "react-router-dom";
 
 const Register = () => {
   const {
-    register,
+    accessToken,
     handleSubmit,
-    getFieldState,
-    trigger,
-    formState: { errors },
-  } = useForm<SignUpTypes>({
-    mode: "onBlur",
-    resolver: zodResolver(signUpSchema),
-  });
-
-  const submitHandler: SubmitHandler<SignUpTypes> = (data) => console.log(data);
-
-  const {
-    checkEmailAvailability,
-    resetCheckEmailAvailability,
+    submitHandler,
+    register,
+    errors,
     emailAvailabilityStatus,
-    enteredEmail,
-  } = useCheckEmailAvailability();
+    emailOnBlurHandler,
+    loading,
+    error,
+  } = useRegister();
 
-  const emailOnBlurHandler = async (e: React.FocusEvent<HTMLInputElement>) => {
-    await trigger("email");
-    const value = e.target.value;
-    const { isDirty, invalid } = getFieldState("email");
-    if (isDirty && !invalid && enteredEmail !== value) {
-      checkEmailAvailability(value);
-    }
-
-    if (isDirty && invalid && enteredEmail) {
-      resetCheckEmailAvailability();
-    }
-  };
+  if (accessToken) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <>
@@ -102,10 +83,24 @@ const Register = () => {
               variant="info"
               type="submit"
               style={{ color: "white" }}
-              disabled={emailAvailabilityStatus === "checking" ? true : false}
+              disabled={
+                emailAvailabilityStatus === "checking"
+                  ? true
+                  : // eslint-disable-next-line no-constant-binary-expression
+                    false || loading === "pending"
+              }
             >
-              Зарегистрироваться
-            </Button>{" "}
+              {loading === "pending" ? (
+                <>
+                  <Spinner animation="border" size="sm" /> Загрузка...
+                </>
+              ) : (
+                "Зарегистрироваться"
+              )}
+            </Button>
+            {error && (
+              <p style={{ color: "red", marginTop: "30px" }}>{error}</p>
+            )}
           </Form>
         </Col>
       </Row>

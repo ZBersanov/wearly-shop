@@ -3,6 +3,7 @@ import actLikeToggle from "./act/actLikeToggle";
 import actGetWishlist from "./act/actGetWishlist";
 import { isString, TLoading } from "@types";
 import { TProduct } from "@types";
+import { authLogout } from "@store/auth/authSlice";
 
 interface IWishListState {
   itemsId: number[];
@@ -27,6 +28,7 @@ const wishlistSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // LIKE_TOGGLE
     builder.addCase(actLikeToggle.pending, (state) => {
       state.error = null;
     });
@@ -45,15 +47,18 @@ const wishlistSlice = createSlice({
         state.error = action.payload;
       }
     });
-    // wishlist items
+    // WISHLIST ITEMS
     builder.addCase(actGetWishlist.pending, (state) => {
       state.loading = "pending";
       state.error = null;
     });
     builder.addCase(actGetWishlist.fulfilled, (state, action) => {
       state.loading = "successfull";
-      state.productsFullInfo = action.payload;
-      state.itemsId = action.payload.map((item) => item.id);
+      if (action.payload.dataType === "productsFullInfo") {
+        state.productsFullInfo = action.payload.data as TProduct[];
+      } else {
+        state.itemsId = action.payload.data as number[];
+      }
     });
 
     builder.addCase(actGetWishlist.rejected, (state, action) => {
@@ -61,6 +66,11 @@ const wishlistSlice = createSlice({
       if (isString(action.payload)) {
         state.error = action.payload;
       }
+      state.itemsId = [];
+      state.productsFullInfo = [];
+    });
+    // WHEN_LOGOUT
+    builder.addCase(authLogout, (state) => {
       state.itemsId = [];
       state.productsFullInfo = [];
     });

@@ -30,12 +30,18 @@ const wishlistPersistConfig = {
   whitelist: ["itemsId"],
 };
 
+const authPersistConfig = {
+  key: "auth",
+  storage,
+  whitelist: ["user", "accessToken"],
+};
+
 const rootReducer = combineReducers({
   categories,
   products,
   cart: persistReducer(cartPersistConfig, cart),
   wishlist: persistReducer(wishlistPersistConfig, wishlist),
-  auth,
+  auth: persistReducer(authPersistConfig, auth),
 });
 
 const store = configureStore({
