@@ -3,6 +3,7 @@ import categories from "@store/categories/categoriesSlice";
 import products from "@store/products/productsSlice";
 import cart from "@store/cart/cartSlice";
 import wishlist from "@store/wishlist/wishlistSlice";
+import auth from "@store/auth/authSlice";
 
 //react-persist
 import {
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   products,
   cart: persistReducer(cartPersistConfig, cart),
   wishlist: persistReducer(wishlistPersistConfig, wishlist),
+  auth,
 });
 
 const store = configureStore({
