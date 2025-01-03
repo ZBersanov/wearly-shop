@@ -30,6 +30,7 @@
       "@util/*": ["src/util/*"],
       "@types/*" : ["src/types/*"],
       "@types" : ["src/types/index"],
+      "@validations/*": ["src/validations/*"]
     },
     /* Linting */
     "strict": true,
