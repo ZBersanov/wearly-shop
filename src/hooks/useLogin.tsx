@@ -26,7 +26,7 @@ const useLogin = () => {
     }
     dispatch(actAuthLogin(data))
       .unwrap()
-      .then(() => navigate("/"));
+      .then(() => navigate("/categories"));
   };
 
   useEffect(() => {

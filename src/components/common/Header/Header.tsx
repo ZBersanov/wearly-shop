@@ -71,7 +71,7 @@ const Header = () => {
                   <NavDropdown.Divider />
                   <NavDropdown.Item
                     as={NavLink}
-                    to="/"
+                    to="/login"
                     onClick={() => dispatch(authLogout())}
                   >
                     Выход
