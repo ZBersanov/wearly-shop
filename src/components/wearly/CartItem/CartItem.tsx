@@ -2,9 +2,9 @@ import { Button, Form } from "react-bootstrap";
 import styles from "./styles.module.css";
 import { TProduct } from "@types";
 import { FC, memo } from "react";
+import ProductInfo from "../ProductInfo/ProductInfo";
 
-const { cartItem, product, productImg, productInfo, cartItemSelection } =
-  styles;
+const { cartItem, cartItemSelection } = styles;
 
 type TCartItemProps = TProduct & {
   changeQuantityHandler: (id: number, quantity: number) => void;
@@ -40,24 +40,17 @@ const CartItem: FC<TCartItemProps> = memo(
 
     return (
       <div className={cartItem}>
-        <div className={product}>
-          <div className={productImg}>
-            <img src={img} alt={title} />
-          </div>
+        <ProductInfo title={title} price={price} img={img} direction="column">
+          <Button
+            variant="secondary"
+            style={{ color: "white", width: "100px" }}
+            className="mt-auto"
+            onClick={() => removeCartItemHandler(id)}
+          >
+            Remove
+          </Button>
+        </ProductInfo>
 
-          <div className={productInfo}>
-            <h2>{title}</h2>
-            <h3>{price.toFixed(2)} RUB</h3>
-            <Button
-              variant="secondary"
-              style={{ color: "white", width: "100px" }}
-              className="mt-auto"
-              onClick={() => removeCartItemHandler(id)}
-            >
-              Remove
-            </Button>
-          </div>
-        </div>
         <div className={cartItemSelection}>
           <span className="d-block mb-1">Количество</span>
           <Form.Select onChange={changeQuantity} value={quantity}>

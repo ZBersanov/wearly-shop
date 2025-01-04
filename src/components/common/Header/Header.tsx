@@ -38,23 +38,23 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link as={NavLink} to="/">
-                Home
+                Главная
               </Nav.Link>
               <Nav.Link as={NavLink} to="categories">
-                Categories
+                Категории
               </Nav.Link>
               <Nav.Link as={NavLink} to="aboutUs">
-                About
+                О нас
               </Nav.Link>
             </Nav>
             <Nav>
               {!accessToken ? (
                 <>
                   <Nav.Link as={NavLink} to="login">
-                    Login
+                    Войти
                   </Nav.Link>
                   <Nav.Link as={NavLink} to="register">
-                    Register
+                    Регистрация
                   </Nav.Link>
                 </>
               ) : (
@@ -62,10 +62,12 @@ const Header = () => {
                   title={`${user?.firstName} ${user?.lastName}`}
                   id="basic-nav-dropdown"
                 >
-                  <NavDropdown.Item as={NavLink} to="profile">
+                  <NavDropdown.Item as={NavLink} to="profile" end>
                     Профиль
                   </NavDropdown.Item>
-                  <NavDropdown.Item>Заказы</NavDropdown.Item>
+                  <NavDropdown.Item as={NavLink} to="profile/orders">
+                    Заказы
+                  </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item
                     as={NavLink}

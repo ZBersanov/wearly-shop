@@ -2,6 +2,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
 //layouts
 const MainLayout = lazy(() => import("@layouts/MainLayout/MainLayout"));
+const ProfileLayout = lazy(
+  () => import("@layouts/ProfileLayout/ProfileLayout")
+);
 //pages
 const Home = lazy(() => import("@pages/Home"));
 const Categories = lazy(() => import("@pages/Categories"));
@@ -12,10 +15,15 @@ const Register = lazy(() => import("@pages/Register"));
 const Cart = lazy(() => import("@pages/Cart"));
 const WishList = lazy(() => import("@pages/WishList"));
 const Profile = lazy(() => import("@pages/Profile"));
+const Orders = lazy(() => import("@pages/Orders"));
+
+//error
 import Error from "@pages/Error";
+//protect route
+import ProtectedRoute from "@components/Auth/ProtectedRoute";
+// cpmponents
 import PageSuspense from "@components/feedback/PageSuspense/PageSuspense";
 import { LottieHandler } from "@components/feedback";
-import ProtectedRoute from "@components/Auth/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -116,10 +124,28 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <PageSuspense>
-              <Profile />
+              <ProfileLayout />
             </PageSuspense>
           </ProtectedRoute>
         ),
+        children: [
+          {
+            index: true,
+            element: (
+              <PageSuspense>
+                <Profile />
+              </PageSuspense>
+            ),
+          },
+          {
+            path: "orders",
+            element: (
+              <PageSuspense>
+                <Orders />
+              </PageSuspense>
+            ),
+          },
+        ],
       },
     ],
   },

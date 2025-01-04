@@ -7,8 +7,9 @@ import { addToCart } from "@store/cart/cartSlice";
 import Like from "@assets/svg/like.svg?react";
 import { actLikeToggle } from "@store/wishlist/wishlistSlice";
 import LikeFill from "@assets/svg/like-fill.svg?react";
+import ProductInfo from "../ProductInfo/ProductInfo";
 
-const { product, productImg, maximumNotice, wishlistBtn } = styles;
+const { maximumNotice, wishlistBtn } = styles;
 
 type TProductProps = TProduct & { isLiked: boolean };
 
@@ -65,7 +66,7 @@ const Product: FC<TProductProps> = memo(
             <p>Сначала необходимо войти в аккаунт</p>
           </Modal.Body>
         </Modal>
-        <div className={product}>
+        <ProductInfo title={title} price={price} img={img} direction="row">
           <div className={wishlistBtn} onClick={likeToggleHandler}>
             {isLoading ? (
               <Spinner animation="border" size="sm" variant="primary" />
@@ -75,11 +76,7 @@ const Product: FC<TProductProps> = memo(
               <Like />
             )}
           </div>
-          <div className={productImg}>
-            <img src={img} alt={title} />
-          </div>
-          <h2>{title}</h2>
-          <h3>{price.toFixed(2)}</h3>
+
           <p className={maximumNotice}>
             {quantityReachedToMax
               ? `Вы достигли лимита`
@@ -87,7 +84,7 @@ const Product: FC<TProductProps> = memo(
           </p>
           <Button
             variant="info"
-            style={{ color: "white" }}
+            style={{ color: "white", width: "100%" }}
             onClick={addToCartHandler}
             disabled={isBtnDisabled || quantityReachedToMax}
           >
@@ -99,7 +96,7 @@ const Product: FC<TProductProps> = memo(
               "Add to cart"
             )}
           </Button>
-        </div>
+        </ProductInfo>
       </>
     );
   }

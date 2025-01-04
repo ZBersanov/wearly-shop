@@ -3,9 +3,10 @@ import notFound from "@assets/lottieFiles/notFound.json";
 import loading from "@assets/lottieFiles/loading.json";
 import empty from "@assets/lottieFiles/empty.json";
 import error from "@assets/lottieFiles/error.json";
+import success from "@assets/lottieFiles/success.json";
 import { FC } from "react";
 
-const lottieFiles = { notFound, loading, error, empty };
+const lottieFiles = { notFound, loading, error, empty, success };
 
 type TLottieHandlerProps = {
   type: keyof typeof lottieFiles;

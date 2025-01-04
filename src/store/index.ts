@@ -4,6 +4,7 @@ import products from "@store/products/productsSlice";
 import cart from "@store/cart/cartSlice";
 import wishlist from "@store/wishlist/wishlistSlice";
 import auth from "@store/auth/authSlice";
+import orders from "@store/orders/ordersSlice";
 
 //react-persist
 import {
@@ -42,6 +43,7 @@ const rootReducer = combineReducers({
   cart: persistReducer(cartPersistConfig, cart),
   wishlist: persistReducer(wishlistPersistConfig, wishlist),
   auth: persistReducer(authPersistConfig, auth),
+  orders,
 });
 
 const store = configureStore({

@@ -10,6 +10,8 @@ const Cart = () => {
     products,
     changeQuantityHandler,
     removeCartItemHandler,
+    userAccessToken,
+    placeOrderStatus,
   } = useCart();
 
   return (
@@ -23,8 +25,13 @@ const Cart = () => {
               changeQuantityHandler={changeQuantityHandler}
               removeCartItemHandler={removeCartItemHandler}
             />
-            <CartSubTotalPrice products={products} />
+            <CartSubTotalPrice
+              products={products}
+              userAccessToken={userAccessToken}
+            />
           </>
+        ) : placeOrderStatus === "successfull" ? (
+          <LottieHandler type="success" message="Заказ оформлен" />
         ) : (
           <LottieHandler type="empty" message="Корзина пуста" />
         )}

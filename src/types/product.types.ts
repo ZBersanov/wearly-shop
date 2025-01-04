@@ -1,10 +1,11 @@
 export type TProduct = {
   id: number;
   title: string;
-  cat_prefix: string;
-  img: string;
   price: number;
+  cat_prefix?: string;
+  img: string;
   quantity?: number;
   max: number;
-  isAuthenticated: boolean;
+  isLiked?: boolean;
+  isAuthenticated?: boolean;
 };

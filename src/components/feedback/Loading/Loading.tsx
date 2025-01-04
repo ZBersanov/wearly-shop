@@ -5,18 +5,20 @@ import CategorySkeleton from "../Skeletons/CategorySkeleton";
 import CartSkeleton from "../Skeletons/CartSkeleton";
 import ProductSkeleton from "../Skeletons/ProductSkeleton";
 import LottieHandler from "../LottieHandler/LottieHandler";
+import TableSkeleton from "../Skeletons/TableSkeleton";
 
 interface LoadingProps {
   loading: TLoading;
   error: null | string;
   children: React.ReactNode;
-  type: "cart" | "category" | "product";
+  type: "cart" | "category" | "product" | "table";
 }
 
 const skeletons = {
   cart: CartSkeleton,
   category: CategorySkeleton,
   product: ProductSkeleton,
+  table: TableSkeleton,
 };
 
 const Loading: FC<LoadingProps> = ({
