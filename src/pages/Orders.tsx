@@ -20,7 +20,7 @@ const Orders = () => {
     <>
       <Modal show={showModal} onHide={closeModalHandler}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Ваш заказ</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {selectedProduct.map((el) => (
